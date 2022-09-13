@@ -4,3 +4,33 @@ email: VARCHAR 255 (string)
 password: VARCHAR (string)
 
 sequelize model:create --name user --attributes email:string,password:string
+
+MOUNTS MODEL
+------------
+apiId: INTEGER
+name: VARCHAR
+
+sequelize model:create --name mount --attributes apiId:integer,name:string
+
+users_mounts
+------------
+userId: INTEGER
+mountId: INTEGER
+obtained: BOOLEAN
+
+sequelize model:create --name users_mounts --attributes userId:integer,mountId:integer,obtained:boolean
+
+MINIONS MODEL
+-------------
+apiId: INTEGER
+name: VARCHAR
+
+sequelize model:create --name minion --attributes apiId:integer,name:string
+
+users_minions
+-------------
+userId: INTEGER
+minionId: INTEGER
+obtained: BOOLEAN
+
+sequelize model:create --name users_minions --attributes userId:integer,minionId:integer,obtained:boolean
