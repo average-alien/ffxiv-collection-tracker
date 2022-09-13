@@ -12,7 +12,7 @@ API that provides data on all (if not most) of the collectables in the game. No 
 
 
 ## ERD
-My database feels very simple but I don't think theres any more data I really need to store
+My database feels very simple but I don't think theres any more data I really need to store as of now
 ![ERD](./media/readme/ERD.drawio.svg)
 
 
