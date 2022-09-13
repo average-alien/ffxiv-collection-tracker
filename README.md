@@ -2,14 +2,19 @@
 
 Website where you can search for and view various collectables in the MMORPG Final Fantasy XIV Online. By creating an account, users can also add collectables to a list and mark them as obtained or unobtained. Users can view their list on their profile page for easier tracking of all the goodies they want to get.
 
+
 ## API
 https://ffxivcollect.com/
+
 https://ffxivcollect.com/api/docs
 
 API that provides data on all (if not most) of the collectables in the game. No API key is needed and there doesn't seem to be any form of rate limiting. Will mostly be using the API to get and show data on the collectables (ex. names, descriptions, and how to get them).
 
+
 ## ERD
+My database feels very simple but I don't think theres any more data I really need to store
 ![ERD](./media/readme/ERD.drawio.svg)
+
 
 ## RESTful Routing Chart
 | VERB | URL | ACTION | DESCRIPTION |
@@ -31,6 +36,8 @@ API that provides data on all (if not most) of the collectables in the game. No 
 | PUT | /users/:id/minions/:id | UPDATE | mark minion as obtained or not
 | DELETE | /users/:id/minions/:id | DESTROY | remove minion from list
 
+More routes can be added for extra categories I add to the DB
+
 ## Wireframes
 ### forms
 ![form wireframe](./media/readme/form.drawio.svg)
@@ -44,6 +51,7 @@ API that provides data on all (if not most) of the collectables in the game. No 
 ### user profile
 ![profile wireframe](./media/readme/profile.drawio.svg)
 
+
 ## User Stories
 - As a user, I want to view all the collectables in a category
 - As a user, I want to search for collectables in a category
@@ -51,6 +59,7 @@ API that provides data on all (if not most) of the collectables in the game. No 
 - As a user, I want to add certain collectables to my personal list
 - As a user, I want to mark collectables I have as obtained in my list
 - As a user, I want to remove collectables from my list that I no longer want to track
+
 
 ## MVP / Stretch Goals
 ### MVP
@@ -63,7 +72,7 @@ API that provides data on all (if not most) of the collectables in the game. No 
 - [] Let users remove collectables from their track list
 
 ### Stretch
-- [] Add more collectable categories 
+- [] Add more collectable categories (the api provides data on around 15 different categories)
 - [] Give users the ability to search through their personal lists
 - [] Allow users to track multiple characters (players can have multiple characters which have unique collection progress)
 - [] 
