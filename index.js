@@ -15,8 +15,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 // our custom auth middleware
 app.use(async (req, res, next) => {
-    // console.log('hello from a middleware')
-    // res.locals.myData = 'hello, fellow route!'
     try {
         // if there is a cookie on the incoming request
         if (req.cookies.userId) {
@@ -41,14 +39,13 @@ app.use(async (req, res, next) => {
 
 // route controllers
 app.use('/users', require('./controllers/users'))
+app.use('/mounts', require('./controllers/mounts'))
 
 // route definitions
 app.get('/', (req, res) => {
     console.log(res.locals.user)
-    // console.log('incoming cookie', req.cookies)
-    // console.log(res.locals.myData)
     res.render('home.ejs')
 })
 
 // listen on a port
-app.listen(PORT, () => console.log(`You or your loved ones may be entitled to compensation on port: ${PORT}`))
+app.listen(PORT, () => console.log(`Pray return to port ${PORT}`))

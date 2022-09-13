@@ -45,11 +45,10 @@ router.post('/', async (req, res) => {
 
 // GET /users/login -- show a login form to user
 router.get('/login', (req, res) => {
-    console.log(req.query)
     res.render('users/login.ejs', {
-        // if the req.query.message exists, pass it as the message, otherwise pass i null
+        // if the req.query.message exists, pass it as the message, otherwise pass in null
         // ternary operator
-        // condition ? expression if truth : expression if falsey
+        // condition ? expression if truthy : expression if falsey
         message: req.query.message ? req.query.message : null
     })
 })
@@ -66,11 +65,9 @@ router.post('/login', async (req, res) => {
         const noLoginMessage = 'Incorrect email or password'
         // if the user is not found -- send the user back to the login form
         if (!user) {
-            console.log('user not found')
             res.redirect('/users/login?message=' + noLoginMessage)
         // if the user is found but has given the wrong password -- send them back to the login form
         } else if (!bcrypt.compareSync(req.body.password, user.password)) {
-            console.log('wrong password')
             res.redirect('/users/login?message=' + noLoginMessage)
         // if the user is found and the supplied pw matches -- log them in
         } else {
@@ -96,7 +93,7 @@ router.get('/logout', (req, res) => {
 router.get('/profile', (req, res) => {
     // if the user is not logged in ... we need to redirect to the login form
     if (!res.locals.user) {
-        res.redirect('/users/login?message=You mustt authenticate before you are authorized to view this resource')
+        res.redirect('/users/login?message=You must authenticate before you are authorized to view this resource')
     // otherwise, show them their profile
     } else {
         res.render('users/profile.ejs', {

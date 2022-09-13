@@ -9,28 +9,17 @@ MOUNTS MODEL
 ------------
 apiId: INTEGER
 name: VARCHAR
+obtained: boolean
+userId: integer
 
-sequelize model:create --name mount --attributes apiId:integer,name:string
-
-users_mounts
-------------
-userId: INTEGER
-mountId: INTEGER
-obtained: BOOLEAN
-
-sequelize model:create --name users_mounts --attributes userId:integer,mountId:integer,obtained:boolean
+sequelize model:create --name mount --attributes apiId:integer,name:string,obtained:boolean,userId:integer
 
 MINIONS MODEL
 -------------
 apiId: INTEGER
 name: VARCHAR
+obtained: boolean
+userId: integer
 
-sequelize model:create --name minion --attributes apiId:integer,name:string
+sequelize model:create --name minion --attributes apiId:integer,name:string,obtained:boolean,userId:integer
 
-users_minions
--------------
-userId: INTEGER
-minionId: INTEGER
-obtained: BOOLEAN
-
-sequelize model:create --name users_minions --attributes userId:integer,minionId:integer,obtained:boolean
