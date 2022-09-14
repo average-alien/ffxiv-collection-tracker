@@ -2,10 +2,17 @@ const express = require('express')
 const router = express.Router()
 const axios = require('axios')
 const db = require('../models')
+const url = 'https://ffxivcollect.com/api/mounts'
 
 // GET /mounts -- index of all mounts
 router.get('/', (req, res) => {
-    res.send('mount index')
+    axios.get(url)
+        .then(response => {
+            res.render('mounts/index.ejs', { mounts: response.data.results })
+        })
+        .catch(error => {
+            console.warn(error)
+        })
 })
 
 // GET /mounts/:id -- show page for specific mount

@@ -1,0 +1,11 @@
+<ul>
+    <% mounts.forEach(mount => { %>
+        <li>
+            <ul>
+                <li>Name:<%= mount.name %></li>
+                <li>Seats:<%= mount.seats %></li>
+                <li>Patch:<%= mount.patch %></li>
+            </ul>
+        </li>
+    <% }) %>
+</ul>
