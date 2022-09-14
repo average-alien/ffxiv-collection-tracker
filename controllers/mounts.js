@@ -74,8 +74,15 @@ router.post('/users/:id', async(req, res) => {
 })
 
 // PUT /mounts/:id -- update mount (marking it as obtained or not)
-router.put('/:id', (req, res) => {
-    res.send(`mount #${req.params.id} getto daze`)
+router.put('/:id', async (req, res) => {
+    try {
+        const mount = await db.mount.findByPk(req.params.id)
+        await mount.update({obtained: req.body.obtained})
+        res.redirect('/users/profile')
+    } catch(error) {
+        console.warn(error)
+        res.send('server error')
+    }
 })
 
 // DELETE /mounts/:id -- remove mount from user's list
