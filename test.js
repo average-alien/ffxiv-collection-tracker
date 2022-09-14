@@ -31,9 +31,11 @@ async function dbTest() {
 // dbTest()
 
 async function findUser() {
-    const user = await db.user.findByPk(1)
+    const user = await db.user.findByPk(2)
     // console.log(user)
-    console.log('log', await user.hasMount({name: 'dunno'}))
+    const mount = await db.mount.findAll()
+    const has = await user.hasMount(mount)
+    console.log(has)
 }
 
 findUser()
