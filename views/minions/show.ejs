@@ -1,0 +1,33 @@
+<h2><%= minion.name %></h2>
+
+<p>Patch: <%= minion.patch %></p>
+
+<img src="<%= minion.image %>" alt="<%= minion.name %>" />
+
+<p>Description: <%= minion.description %></p>
+<p><%= minion.enhanced_description %></p>
+
+<p>Tooltip: <%= minion.tooltip %></p>
+
+<p>Behavior: <%= minion.behavior.name %></p>
+
+<p>Race: <%= minion.race.name %></p>
+
+<p>Sources:</p>
+<ul>
+    <% minion.sources.forEach(source => { %>
+        <li>
+            <p><%= source.type %>: <%= source.text %></p>
+        </li>
+    <% }) %>
+</ul>
+
+<% if (user && !saved) { %>
+    <form method="POST" action="/minions/users/<%= user.id %>">
+        <input type="number" value="<%= minion.id %>" name="apiId" hidden />
+        <input type="text" value="<%= minion.name %>" name="name" hidden />
+        <button type="submit">Save</button>
+    </form>
+<% } else if (user && saved) { %>
+    <button>Saved!</button>
+<% } %>

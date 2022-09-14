@@ -24,8 +24,35 @@ router.get('/', async (req, res) => {
 })
 
 // GET /minions/:id -- show page for specific minion
-router.get('/:id', (req, res) => {
-    res.send(`minion #${req.params.id}`)
+router.get('/:id', async (req, res) => {
+    try {
+        // API call
+        const response = await axios.get(`${url}/${req.params.id}`)
+        // if a user is logged in
+        if (res.locals.user) {
+            // find if user has saved this mount
+            const minion = await db.minion.findOne({
+                where: {
+                    apiId: req.params.id,
+                    userId: res.locals.user.id
+                }
+            })
+            const saved = await res.locals.user.hasMinion(minion)
+            // necessary data to send to the view
+            const data = {
+                minion: response.data,
+                user: res.locals.user,
+                saved
+            }
+            res.render('minions/show.ejs', data)
+        // else just send the API response
+        } else {
+            res.render('minions/show.ejs', {minion: response.data})
+        }
+    } catch(error) {
+        console.warn(error)
+        res.send('server error')
+    }
 })
 
 // POST /minions/users/:id -- add minion to specific user's list
