@@ -86,8 +86,14 @@ router.put('/:id', async (req, res) => {
 })
 
 // DELETE /mounts/:id -- remove mount from user's list
-router.delete('/:id', (req, res) => {
-    res.send(`goodbye mount ${req.params.id}`)
+router.delete('/:id', async (req, res) => {
+    try {
+        await db.mount.destroy({ where: { id: req.params.id } })
+        res.redirect('/users/profile')
+    } catch(error) {
+        console.warn(error)
+        res.send('server error')
+    }
 })
 
 module.exports= router
