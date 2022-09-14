@@ -2,8 +2,12 @@
     <% mounts.forEach(mount => { %>
         <li>
             <ul>
+                <img src="<%= mount.icon %>" />
+
                 <li>Name:<%= mount.name %></li>
+
                 <li>Seats:<%= mount.seats %></li>
+                
                 <li>Patch:<%= mount.patch %></li>
             </ul>
         </li>

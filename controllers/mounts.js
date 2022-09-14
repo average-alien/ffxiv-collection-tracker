@@ -12,12 +12,20 @@ router.get('/', (req, res) => {
         })
         .catch(error => {
             console.warn(error)
+            res.send('server error')
         })
 })
 
 // GET /mounts/:id -- show page for specific mount
 router.get('/:id', (req, res) => {
-    res.send(`mount #${req.params.id}`)
+    axios.get(`${url}/${req.params.id}`)
+        .then(response => {
+            res.render('mounts/show.ejs', { mount: response.data })
+        })
+        .catch(error => {
+            console.warn(error)
+            res.send('server error')
+        })
 })
 
 // POST /mounts/users/:id -- add mount to specific user's list
