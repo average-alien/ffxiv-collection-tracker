@@ -26,3 +26,13 @@
         </li>
     <% }) %>
 </ul>
+
+<% if (user && !obtained) { %>
+    <form method="POST" action="/mounts/users/<%= user.id %>">
+        <input type="number" value="<%= mount.id %>" name="apiId" hidden />
+        <input type="text" value="<%= mount.name %>" name="name" hidden />
+        <button type="submit">Save</button>
+    </form>
+<% } else if (user && obtained) { %>
+    <button>Saved!</button>
+<% } %>
