@@ -2,7 +2,9 @@
 
 <h2>Mounts</h2>
 
-
+<% if (user.mounts.length <= 0) { %>
+    <p>No mounts saved 😞 Try searching for some to track!</p>
+<% } %>
 
 <ul>
     <% user.mounts.forEach(mount => { %>
@@ -31,6 +33,45 @@
             </form>
             
             <form method="POST" action="/mounts/<%= mount.id %>/?_method=DELETE">
+                <button type="submit">Delete me</button>
+            </form>
+        </li>
+    <% }) %>
+</ul>
+
+<h2>Minions</h2>
+
+<% if (user.minions.length <= 0) { %>
+    <p>No minions saved 😞 Try searching for some to track!</p>
+<% } %>
+
+<ul>
+    <% user.minions.forEach(minion => { %>
+        <li>
+            <p><%= minion.name %></p>
+
+            <form method="POST" action="/minions/<%= minion.id %>/?_method=PUT">
+
+                <% if (minion.obtained) { %>
+                    <label for="<%= minion.id %>-obtained">Have</label>
+                    <input id="<%= minion.id %>-obtained" type="radio" value="t" name="obtained" checked />
+
+                    <label for="<%= minion.id %>-unobtained">Don't have</label>    
+                    <input id="<%= minion.id %>-unobtained" type="radio" value="f" name="obtained" />
+
+                <% } else { %>
+
+                    <label for="<%= minion.id %>-obtained">Have</label>
+                    <input id="<%= minion.id %>-obtained" type="radio" value="t" name="obtained" />
+
+                    <label for="<%= minion.id %>-unobtained">Don't have</label>
+                    <input id="<%= minion.id %>-unobtained" type="radio" value="f" name="obtained" checked />
+                <% } %>
+
+            <button type="submit">Save</button>
+            </form>
+            
+            <form method="POST" action="/minions/<%= minion.id %>/?_method=DELETE">
                 <button type="submit">Delete me</button>
             </form>
         </li>

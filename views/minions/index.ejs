@@ -1,0 +1,15 @@
+<form method="GET" action="/minions">
+    <label for="search">Search minions:</label>
+    <input id="search" type="text" name="search" />
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+    <% minions.forEach(minion => { %>
+        <li>
+            <img src="<%= minion.icon %>" />
+
+            <a href="/minions/<%= minion.id %>"><%= minion.name %></a>
+        </li>
+    <% }) %>
+</ul>

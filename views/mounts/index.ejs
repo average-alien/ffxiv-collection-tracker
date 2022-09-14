@@ -1,5 +1,5 @@
 <form method="GET" action="/mounts">
-    <label for="search">Search:</label>
+    <label for="search">Search mounts:</label>
     <input id="search" type="text" name="search" />
     <button type="submit">Search</button>
 </form>
@@ -7,17 +7,9 @@
 <ul>
     <% mounts.forEach(mount => { %>
         <li>
-            <ul>
-                <img src="<%= mount.icon %>" />
+            <img src="<%= mount.icon %>" />
 
-                <li>
-                    <a href="/mounts/<%= mount.id %>"><%= mount.name %></a>
-                </li>
-
-                <li>Seats:<%= mount.seats %></li>
-
-                <li>Patch:<%= mount.patch %></li>
-            </ul>
+            <a href="/mounts/<%= mount.id %>"><%= mount.name %></a>
         </li>
     <% }) %>
 </ul>

@@ -7,9 +7,12 @@ const url = 'https://ffxivcollect.com/api/mounts'
 // GET /mounts -- index of all mounts
 router.get('/', async (req, res) => {
     try {
+        // if search paramaters are provided
         if (req.query.search) {
+            // pass along search request
             const response = await axios.get(`${url}?name_en_cont=${req.query.search}`)
             res.render('mounts/index.ejs', { mounts: response.data.results })
+        // else request the whole whopping index
         } else {
             const response = await axios.get(url)
             res.render('mounts/index.ejs', { mounts: response.data.results })
@@ -18,7 +21,6 @@ router.get('/', async (req, res) => {
         console.warn(error)
         res.send('server error')
     }
-
 })
 
 // GET /mounts/:id -- show page for specific mount

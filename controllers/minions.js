@@ -2,10 +2,25 @@ const express = require('express')
 const router = express.Router()
 const axios = require('axios')
 const db = require('../models')
+const url = "https://ffxivcollect.com/api/minions"
 
 // GET /minions -- index of all minions
-router.get('/', (req, res) => {
-    res.send('minion index')
+router.get('/', async (req, res) => {
+    try {
+        // if search paramaters are provided
+        if (req.query.search) {
+            // pass along search request
+            const response = await axios.get(`${url}?name_en_cont=${req.query.search}`)
+            res.render('minions/index.ejs', { minions: response.data.results })
+        // else request the whole whopping index
+        } else {
+            const response = await axios.get(url)
+            res.render('minions/index.ejs', { minions: response.data.results })
+        }
+    } catch(error) {
+        console.warn(error)
+        res.send('server error')
+    }
 })
 
 // GET /minions/:id -- show page for specific minion
