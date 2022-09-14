@@ -5,6 +5,7 @@ const ejsLayouts = require('express-ejs-layouts')
 const cookieParser = require('cookie-parser')
 const db = require('./models')
 const crypto = require('crypto-js')
+const methodOverride = require('method-override')
 
 // config express app/middlewares
 const app = express()
@@ -13,6 +14,7 @@ app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(methodOverride('_method'))
 // our custom auth middleware
 app.use(async (req, res, next) => {
     try {
@@ -40,6 +42,7 @@ app.use(async (req, res, next) => {
 // route controllers
 app.use('/users', require('./controllers/users'))
 app.use('/mounts', require('./controllers/mounts'))
+app.use('/minions', require('./controllers/minions'))
 
 // route definitions
 app.get('/', (req, res) => {
