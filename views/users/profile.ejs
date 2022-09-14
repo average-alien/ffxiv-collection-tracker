@@ -1,1 +1,38 @@
-<h2>Welcome to your profile <%= user.email %>! 🎉</h2>
+<h2>Here's your profile <%= user.email %>! 🎉</h2>
+
+<h2>Mounts</h2>
+
+
+
+<ul>
+    <% user.mounts.forEach(mount => { %>
+        <li>
+            <p><%= mount.name %></p>
+
+            <form method="POST" action="/mounts/<%= mount.id %>/?_method=PUT">
+
+                <% if (mount.obtained) { %>
+                    <label for="obtained">Have</label>
+                    <input id="obtained" type="radio" value="true" name="obtained" checked />
+
+                    <label for="unobtained">Don't have</label>    
+                    <input id="unobtained" type="radio" value="false" name="obtained" />
+
+                <% } else { %>
+
+                    <label for="obtained">Have</label>
+                    <input id="obtained" type="radio" value="true" name="obtained" />
+
+                    <label for="unobtained">Don't have</label>
+                    <input id="unobtained" type="radio" value="false" name="obtained" checked />
+                <% } %>
+
+            <button type="submit">Save</button>
+            </form>
+            
+            <form method="POST" action="/mounts/<%= mount.id %>/?_method=DELETE">
+                <button type="submit">Delete me</button>
+            </form>
+        </li>
+    <% }) %>
+</ul>

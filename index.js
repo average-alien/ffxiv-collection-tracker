@@ -24,7 +24,9 @@ app.use(async (req, res, next) => {
             const decryptedId = crypto.AES.decrypt(req.cookies.userId.toString(), process.env.ENC_SECRET)
             const decryptedIdString = decryptedId.toString(crypto.enc.Utf8)
             // look up the user in the db
-            const user = await db.user.findByPk(decryptedIdString) // includes can go here
+            const user = await db.user.findByPk(decryptedIdString, {
+                include: [db.mount, db.minion]
+            }) // includes can go here
             // mount the user on the res.locals
             res.locals.user = user
             // if there is no cookie -- set the user to be null in the res.locals
