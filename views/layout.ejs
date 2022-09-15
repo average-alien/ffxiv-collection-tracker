@@ -5,31 +5,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <title>Project 2</title>
 </head>
 
 <body>
+    <!-- Log in modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Log in</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form action="/users/login" method="POST">
+                        <div class="form-floating mb-3">
+                            <input id="login-email" class="form-control" type="email" placeholder="name@example.com" name="email" required />
+                            <label for="login-email">Email address</label>
+                        </div>
+                    
+                        <div class="form-floating mb-3">
+                            <input id="login-password" class="form-control" type="password" placeholder="Password" name="password" required />
+                            <label for="login-password">Password</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Log in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign up modal -->
     <div class="modal fade" id="signup-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Sign Up</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/users" method="POST">
+                        <div class="form-floating mb-3">
+                            <input id="signup-email" class="form-control" type="email" placeholder="name@example.com" name="email" required />
+                            <label for="signup-email">Email address</label>
+                        </div>
+                    
+                        <div class="form-floating mb-3">
+                            <input id="signup-password" class="form-control" type="password" placeholder="Password" name="password" required />
+                            <label for="signup-password">Password</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-secondary">Sign up</button>
+                    </form>
+                </div>
             </div>
-            <div class="modal-body">
-              <%- include('users/new.ejs') %>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
-    <h1>Welcome to the XIV Collection Tracker</h1>
-
+    <!-- Nav bar -->
     <nav class="navbar sticky-top navbar-expand-lg bg-info">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Home</a>
+            <a class="navbar-brand" href="/">Title</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse" id="navbar-content">
+                <!-- Collectable related content (left side) -->
                 <ul class="navbar-nav container-fluid">
                     <li class="nav-item">
                         <a class="nav-link" href="/mounts" >Mounts</a>
@@ -40,7 +85,7 @@
                     </li>
                 </ul>
 
-
+                <!-- User related content (right side) -->
                 <div class="navbar-nav container-fluid d-flex justify-content-end">
                     <!-- all data in the res.locals is usable in the layout -->
                     <!-- if the user is logged in.. -->
@@ -59,28 +104,21 @@
                     </div>
                     <!-- if the user is logged out -->
                     <% } else { %>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="/users/login">Log in</a>
-                        </li> -->
-
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login-modal">
-                            Log in
-                        </button>
-
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup-modal">
-                            Sign up
-                        </button>
-
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="/users/new">Sign up</a>
-                        </li> -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login-modal">
+                                Log in
+                            </button>
+    
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#signup-modal">
+                                Sign up
+                            </button>
+                        </div>
                     <% } %>
-                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
     <%- body %>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

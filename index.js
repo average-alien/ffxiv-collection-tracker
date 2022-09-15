@@ -48,7 +48,6 @@ app.use('/minions', require('./controllers/minions'))
 
 // route definitions
 app.get('/', (req, res) => {
-    console.log(res.locals.user)
     res.render('home.ejs')
 })
 

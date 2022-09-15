@@ -34,7 +34,6 @@ router.post('/', async (req, res) => {
             const encryptedUserIdString = encryptedUserId.toString()
             // res.cookie('key', value)
             res.cookie('userId', encryptedUserIdString)
-            // redirect to the homepage
             res.redirect('/users/profile')
         }
     } catch(error) {
