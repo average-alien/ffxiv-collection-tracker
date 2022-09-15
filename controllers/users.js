@@ -73,7 +73,7 @@ router.post('/login', async (req, res) => {
             const encryptedUserId = crypto.AES.encrypt(user.id.toString(), process.env.ENC_SECRET)
             const encryptedUserIdString = encryptedUserId.toString()
             res.cookie('userId', encryptedUserIdString)
-            res.redirect('/users/profile')
+            res.redirect('back')
         }
     } catch(error) {
         console.log(error)

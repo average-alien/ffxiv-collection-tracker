@@ -68,7 +68,7 @@ router.post('/users/:id', async(req, res) => {
                 obtained: false
             }
         })
-        res.redirect(`/mounts/${req.body.apiId}`)
+        res.redirect(`back`)
     } catch (error) {
         console.warn(error)
         res.send('server error')
