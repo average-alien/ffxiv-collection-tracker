@@ -9,6 +9,20 @@
 </head>
 
 <body>
+    <div class="modal fade" id="signup-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sign Up</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <%- include('users/new.ejs') %>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <h1>Welcome to the XIV Collection Tracker</h1>
 
     <nav class="navbar sticky-top navbar-expand-lg bg-info">
@@ -27,14 +41,14 @@
                 </ul>
 
 
-                <ul class="navbar-nav container-fluid d-flex justify-content-end">
+                <div class="navbar-nav container-fluid d-flex justify-content-end">
                     <!-- all data in the res.locals is usable in the layout -->
                     <!-- if the user is logged in.. -->
                     <% if (user) { %>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="nav-item dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <%= user.email %>
-                        </a>
+                        </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="/users/profile">Profile</a></li>
                             
@@ -42,18 +56,26 @@
                             
                             <li><a class="dropdown-item" href="/users/logout">Log out</a></li>
                         </ul>
-                    </li>
+                    </div>
                     <!-- if the user is logged out -->
                     <% } else { %>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="/users/login">Log in</a>
-                        </li>
+                        </li> -->
 
-                        <li class="nav-item">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login-modal">
+                            Log in
+                        </button>
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup-modal">
+                            Sign up
+                        </button>
+
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="/users/new">Sign up</a>
-                        </li>
+                        </li> -->
                     <% } %>
-                </ul>
+                    </div>
             </div>
         </div>
     </nav>
