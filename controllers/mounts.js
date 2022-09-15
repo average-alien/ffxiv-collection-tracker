@@ -58,7 +58,7 @@ router.get('/:id', async (req, res) => {
 // POST /mounts/users/:id -- add mount to specific user's list
 router.post('/users/:id', async(req, res) => {
     try {
-        const [trackedMount] = await db.mount.findOrCreate({
+        await db.mount.findOrCreate({
             where: {
                 apiId: req.body.apiId,
                 name: req.body.name,

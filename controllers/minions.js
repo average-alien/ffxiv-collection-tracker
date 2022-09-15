@@ -30,7 +30,7 @@ router.get('/:id', async (req, res) => {
         const response = await axios.get(`${url}/${req.params.id}`)
         // if a user is logged in
         if (res.locals.user) {
-            // find if user has saved this mount
+            // find if user has saved this minion
             const minion = await db.minion.findOne({
                 where: {
                     apiId: req.params.id,
@@ -56,19 +56,46 @@ router.get('/:id', async (req, res) => {
 })
 
 // POST /minions/users/:id -- add minion to specific user's list
-router.post('/users/:id', (req, res) => {
-    console.log(`new minion for user#${req.params.id}`)
-    res.json(req.body)
+router.post('/users/:id', async (req, res) => {
+    try {
+        await db.minion.findOrCreate({
+            where: {
+                apiId: req.body.apiId,
+                name: req.body.name,
+                userId: req.params.id
+            },
+            defaults: {
+                obtained: false
+            }
+        })
+        res.redirect(`/minions/${req.body.apiId}`)
+    } catch (error) {
+        console.warn(error)
+        res.send('server error')
+    }   
 })
 
 // PUT /minions/:id -- update minion (marking it as obtained or not)
-router.put('/:id', (req, res) => {
-    res.send(`minion #${req.params.id} getto daze`)
+router.put('/:id', async (req, res) => {
+    try {
+        const minion = await db.minion.findByPk(req.params.id)
+        await minion.update({obtained: req.body.obtained})
+        res.redirect('/users/profile')
+    } catch(error) {
+        console.warn(error)
+        res.send('server error')
+    }
 })
 
 // DELETE /minions/:id -- remove minion from user's list
-router.delete('/:id', (req, res) => {
-    res.send(`goodbye minion ${req.params.id}`)
+router.delete('/:id', async (req, res) => {
+    try {
+        await db.minion.destroy({ where: { id: req.params.id } })
+        res.redirect('/users/profile')
+    } catch(error) {
+        console.warn(error)
+        res.send('server error')
+    }
 })
 
 module.exports= router
