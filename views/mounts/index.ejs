@@ -1,10 +1,15 @@
-<div class="container d-flex justify-content-center align-items-center my-4 mx-auto">
-    <form method="GET" action="/mounts">
-        <label for="search">Search mounts:</label>
-        <input id="search" type="text" name="search" />
-        <button type="submit">Search</button>
-    </form>
-</div>
+<form class="container d-flex justify-content-center align-items-center my-4 mx-auto" method="GET" action="/mounts">
+    <div class="form-floating">
+        <% if (searchReq) { %>
+            <input class="form-control" id="search" type="text" name="search" value="<%= searchReq %>" placeholder="chocobo" />
+        <% } else { %>
+            <input class="form-control" id="search" type="text" name="search" placeholder="chocobo" />
+        <% } %>
+        <label for="search">Search mounts</label>
+    </div>
+    
+    <button class="btn btn-primary m-3" type="submit">Search</button>
+</form>
 
 <ul class="container list-group">
     <% mounts.forEach(mount => { %>

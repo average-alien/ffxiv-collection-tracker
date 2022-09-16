@@ -11,11 +11,17 @@ router.get('/', async (req, res) => {
         if (req.query.search) {
             // pass along search request
             const response = await axios.get(`${url}?name_en_cont=${req.query.search}`)
-            res.render('mounts/index.ejs', { mounts: response.data.results })
+            res.render('mounts/index.ejs', {
+                mounts: response.data.results,
+                searchReq: req.query.search
+            })
         // else request the whole whopping index
         } else {
             const response = await axios.get(url)
-            res.render('mounts/index.ejs', { mounts: response.data.results })
+            res.render('mounts/index.ejs', {
+                mounts: response.data.results,
+                searchReq: null
+            })
         }
     } catch(error) {
         console.warn(error)
