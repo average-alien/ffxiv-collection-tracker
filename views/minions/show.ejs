@@ -35,15 +35,11 @@
 
             <li class="list-group-item">Behavior: <%= minion.behavior.name %></li>
             
-            <li class="list-group-item">
-                <p>Tradable:
-                    <% if (minion.tradeable) { %>
-                        <span> Yes</span>
-                    <% } else { %>
-                        <span> No</span>
-                    <% } %>
-                </p>
-            </li>
+            <% if (minion.tradeable) { %>
+                <li class="list-group-item">Tradeable: Yes</li>
+            <% } else { %>
+                <li class="list-group-item">Tradeable: No</li>
+            <% } %>
             
             <li class="list-group-item">Percent owned: <%= minion.owned %></li>
             

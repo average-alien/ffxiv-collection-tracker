@@ -40,15 +40,11 @@
                 
                 <li class="list-group-item">Movement type: <%= mount.movement %></li>
                 
-                <li class="list-group-item">
-                    <p>Tradable:
-                        <% if (mount.tradeable) { %>
-                            <span> Yes</span>
-                        <% } else { %>
-                            <span> No</span>
-                        <% } %>
-                    </p>
-                </li>
+                <% if (mount.tradeable) { %>
+                    <li class="list-group-item">Tradeable: Yes</li>
+                <% } else { %>
+                    <li class="list-group-item">Tradeable: No</li>
+                <% } %>
                 
                 <li class="list-group-item">Percent owned: <%= mount.owned %></li>
                 
