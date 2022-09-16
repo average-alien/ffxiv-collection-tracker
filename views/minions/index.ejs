@@ -1,10 +1,15 @@
-<div class="container d-flex justify-content-center align-items-center my-4 mx-auto">
-    <form method="GET" action="/minions">
-        <label for="search">Search minions:</label>
-        <input id="search" type="text" name="search" />
-        <button type="submit">Search</button>
-    </form>
-</div>
+<form class="container d-flex justify-content-center align-items-center my-4 mx-auto" method="GET" action="/minions">
+    <div class="form-floating">
+        <% if (searchReq) { %>
+            <input class="form-control" id="search" type="text" name="search" value="<%= searchReq %>" placeholder="wind-up" />
+        <% } else { %>
+            <input class="form-control" id="search" type="text" name="search" placeholder="wind-up" />
+        <% } %>
+        <label for="search">Search minions</label>
+    </div>
+        
+    <button class="btn btn-primary m-3" type="submit">Search</button>
+</form>
 
 <ul class="container list-group">
     <% minions.forEach(minion => { %>
