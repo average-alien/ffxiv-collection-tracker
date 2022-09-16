@@ -15,7 +15,7 @@
             <p class="card-text"><%= mount.enhanced_description %></p>
             
         </div>
-        <div class="card-footer">
+        <div class="card-footer py-3">
             <% if (user && !saved) { %>
                 <form method="POST" action="/mounts/users/<%= user.id %>">
                     <input type="number" value="<%= mount.id %>" name="apiId" hidden />
@@ -67,9 +67,9 @@
 
         <% if (mount.bgm) { %>
             <div class="card-footer d-flex align-items-center">
-                <span class=>Mount BGM: </span>
+                <span class=>BGM Preview: </span>
 
-                <audio class="px-4" controls controlslist="nodownload">
+                <audio class="px-3" controls controlslist="nodownload">
                     <source src="<%= mount.bgm %>" />
                     Your browser does not support audio 😞
                 </audio>
