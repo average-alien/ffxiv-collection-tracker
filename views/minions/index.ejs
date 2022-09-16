@@ -1,15 +1,20 @@
-<form method="GET" action="/minions">
-    <label for="search">Search minions:</label>
-    <input id="search" type="text" name="search" />
-    <button type="submit">Search</button>
-</form>
+<div class="container d-flex justify-content-center align-items-center my-4 mx-auto">
+    <form method="GET" action="/minions">
+        <label for="search">Search minions:</label>
+        <input id="search" type="text" name="search" />
+        <button type="submit">Search</button>
+    </form>
+</div>
 
-<ul>
+<ul class="container list-group">
     <% minions.forEach(minion => { %>
-        <li>
-            <img src="<%= minion.icon %>" />
-
-            <a href="/minions/<%= minion.id %>"><%= minion.name %></a>
+        <li class="list-group-item">
+            <div class="d-flex justify-content-between">
+                <a class="d-flex align-items-center" href="/minions/<%= minion.id %>">
+                    <img class="m-3" src="<%= minion.icon %>" width="40" height="40" />
+                    <h5 class="text-center m-0"><%= minion.name %></h5>
+                </a>
+            </div>
         </li>
     <% }) %>
 </ul>

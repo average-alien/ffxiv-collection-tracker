@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
             const encryptedUserIdString = encryptedUserId.toString()
             // res.cookie('key', value)
             res.cookie('userId', encryptedUserIdString)
-            res.redirect('/users/profile')
+            res.redirect('back')
         }
     } catch(error) {
         console.log(error)
@@ -92,7 +92,7 @@ router.get('/logout', (req, res) => {
 router.get('/profile', (req, res) => {
     // if the user is not logged in ... we need to redirect to the login form
     if (!res.locals.user) {
-        res.redirect('/users/login?message=You must authenticate before you are authorized to view this resource')
+        res.redirect('/users/login?message=You must login before you can view your profile')
     // otherwise, show them their profile
     } else {
         res.render('users/profile.ejs', {

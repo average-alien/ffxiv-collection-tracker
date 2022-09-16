@@ -1,35 +1,62 @@
-<h2><%= minion.name %></h2>
+<div class="container card-group my-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <img class="px-5" src="<%= minion.image %>" />
+                
+                <h6 class="text-wrap"><%= minion.tooltip %></h6>
+            </div>
 
-<p>Patch: <%= minion.patch %></p>
+            <h2 class="card-title"><%= minion.name %></h2>
+            
+            <p class="card-text"><%= minion.description %></p>
+            
+            <p class="card-text"><%= minion.enhanced_description %></p>
+        </div>
+        <div class="card-footer py-3">
+            <% if (user && !saved) { %>
+                <form method="POST" action="/minions/users/<%= user.id %>">
+                    <input type="number" value="<%= minion.id %>" name="apiId" hidden />
+                    <input type="text" value="<%= minion.name %>" name="name" hidden />
+                    <button class="btn btn-info" type="submit">Save?</button>
+                </form>
+            <% } else if (user && saved) { %>
+                <button class="btn btn-success">Saved!</button>
+            <% } else { %>
+                <button class="btn btn-info">Log in to save</button>
+            <% } %>
+        </div>
+    </div>
 
-<p>Owned: <%= minion.owned %></p>
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Added in patch <%= minion.patch %></li>
 
-<img src="<%= minion.image %>" alt="<%= minion.name %>" />
+            <li class="list-group-item">Behavior: <%= minion.behavior.name %></li>
+            
+            <li class="list-group-item">
+                <p>Tradable:
+                    <% if (minion.tradeable) { %>
+                        <span> Yes</span>
+                    <% } else { %>
+                        <span> No</span>
+                    <% } %>
+                </p>
+            </li>
+            
+            <li class="list-group-item">Percent owned: <%= minion.owned %></li>
+            
+            <li class="list-group-item">
+                <p>Sources:</p>
 
-<p>Description: <%= minion.description %></p>
-<p><%= minion.enhanced_description %></p>
-
-<p>Tooltip: <%= minion.tooltip %></p>
-
-<p>Behavior: <%= minion.behavior.name %></p>
-
-<p>Race: <%= minion.race.name %></p>
-
-<p>Sources:</p>
-<ul>
-    <% minion.sources.forEach(source => { %>
-        <li>
-            <p><%= source.type %>: <%= source.text %></p>
-        </li>
-    <% }) %>
-</ul>
-
-<% if (user && !saved) { %>
-    <form method="POST" action="/minions/users/<%= user.id %>">
-        <input type="number" value="<%= minion.id %>" name="apiId" hidden />
-        <input type="text" value="<%= minion.name %>" name="name" hidden />
-        <button type="submit">Save</button>
-    </form>
-<% } else if (user && saved) { %>
-    <button>Saved!</button>
-<% } %>
+                <ul>
+                    <% minion.sources.forEach(source => { %>
+                        <li>
+                            <p><%= source.type %>: <%= source.text %></p>
+                        </li>
+                    <% }) %>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
