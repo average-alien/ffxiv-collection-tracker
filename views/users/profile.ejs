@@ -81,3 +81,44 @@
         </ul>
     <% }) %>
 </div>
+
+<div class="container text-center my-5">
+    <h3>Emotes</h3>
+
+    <% if (user.emotes.length <= 0) { %>
+        <p>No emotes saved 😞 Try searching for some to track!</p>
+    <% } %>
+    
+    <% user.emotes.forEach(emote => { %>
+        <ul class="list-group list-group-horizontal my-3">
+            <a class="list-group-item list-group-item-action" href="/emotes/<%= emote.apiId %>">
+                <img class="mx-3" src="<%= emote.icon %>" />
+                <h5 class="d-inline mx-3"><%= emote.name %></h5>
+            </a>
+    
+            <li class="list-group-item list-group-item-action">
+                <form method="POST" action="/emotes/<%= emote.id %>/?_method=PUT">
+                    <% if (emote.obtained) { %>
+                        <input class="btn-check" id="<%= emote.id %>-obtained-emote" type="radio" value="t" name="obtained" checked />
+                        <label class="btn btn-outline-success" for="<%= emote.id %>-obtained-emote">Have</label>
+    
+                        <input class="btn-check" id="<%= emote.id %>-unobtained-emote" type="radio" value="f" name="obtained" />
+                        <label class="btn btn-outline-warning" for="<%= emote.id %>-unobtained-emote">Don't have</label>    
+                    <% } else { %>
+                        <input class="btn-check" id="<%= emote.id %>-obtained-emote" type="radio" value="t" name="obtained" />
+                        <label class="btn btn-outline-success" for="<%= emote.id %>-obtained-emote">Have</label>
+    
+                        <input class="btn-check" id="<%= emote.id %>-unobtained-emote" type="radio" value="f" name="obtained" checked />
+                        <label class="btn btn-outline-warning" for="<%= emote.id %>-unobtained-emote">Don't have</label>
+                    <% } %>
+    
+                    <button hidden type="submit"></button>
+                </form>
+            </li>
+    
+            <form method="POST" action="/emotes/<%= emote.id %>/?_method=DELETE">
+                <button class="list-group-item list-group-item-action list-group-item-danger py-3" type="submit">Remove</button>
+            </form>
+        </ul>
+    <% }) %>
+</div>

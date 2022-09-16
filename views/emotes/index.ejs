@@ -1,0 +1,25 @@
+<form class="container d-flex justify-content-center align-items-center my-4 mx-auto" method="GET" action="/emotes">
+    <div class="form-floating">
+        <% if (searchReq) { %>
+            <input class="form-control" id="search" type="text" name="search" value="<%= searchReq %>" placeholder="wind-up" />
+        <% } else { %>
+            <input class="form-control" id="search" type="text" name="search" placeholder="wind-up" />
+        <% } %>
+        <label for="search">Search emotes</label>
+    </div>
+        
+    <button class="btn btn-primary m-3" type="submit">Search</button>
+</form>
+
+<ul class="container list-group">
+    <% emotes.forEach(emote => { %>
+        <li class="list-group-item">
+            <div class="d-flex justify-content-between">
+                <a class="d-flex align-items-center" href="/emotes/<%= emote.id %>">
+                    <img class="m-3" src="<%= emote.icon %>" width="40" height="40" />
+                    <h5 class="text-center m-0"><%= emote.name %></h5>
+                </a>
+            </div>
+        </li>
+    <% }) %>
+</ul>
