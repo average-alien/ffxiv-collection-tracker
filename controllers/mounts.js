@@ -67,10 +67,11 @@ router.post('/users/:id', async(req, res) => {
         await db.mount.findOrCreate({
             where: {
                 apiId: req.body.apiId,
-                name: req.body.name,
                 userId: req.params.id
             },
             defaults: {
+                name: req.body.name,
+                icon: req.body.icon,
                 obtained: false
             }
         })

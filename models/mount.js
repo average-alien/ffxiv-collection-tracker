@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   mount.init({
     apiId: DataTypes.INTEGER,
     name: DataTypes.STRING,
+    icon: DataTypes.STRING,
     obtained: DataTypes.BOOLEAN,
     userId: DataTypes.INTEGER
   }, {

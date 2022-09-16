@@ -14,6 +14,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      icon: {
+        type: Sequelize.STRING
+      },
       obtained: {
         type: Sequelize.BOOLEAN
       },

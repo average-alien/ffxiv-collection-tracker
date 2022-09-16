@@ -9,23 +9,25 @@
     
     <% user.mounts.forEach(mount => { %>
         <ul class="list-group list-group-horizontal my-3">
-            <!-- TODO: Add Icon -->
-            <a class="list-group-item list-group-item-action" href="/mounts/<%= mount.apiId %>"><%= mount.name %></a>
+            <a class="list-group-item list-group-item-action" href="/mounts/<%= mount.apiId %>">
+                <img class="mx-3" src="<%= mount.icon %>" />
+                <h5 class="d-inline mx-3"><%= mount.name %></h5>
+            </a>
     
             <li class="list-group-item list-group-item-action">
                 <form method="POST" action="/mounts/<%= mount.id %>/?_method=PUT">
                     <% if (mount.obtained) { %>
-                        <input class="btn-check" id="<%= mount.id %>-obtained" type="radio" value="t" name="obtained" checked />
-                        <label class="btn btn-outline-success" for="<%= mount.id %>-obtained">Have</label>
+                        <input class="btn-check" id="<%= mount.id %>-obtained-mount" type="radio" value="t" name="obtained" checked />
+                        <label class="btn btn-outline-success" for="<%= mount.id %>-obtained-mount">Have</label>
     
-                        <input class="btn-check" id="<%= mount.id %>-unobtained" type="radio" value="f" name="obtained" />
-                        <label class="btn btn-outline-info" for="<%= mount.id %>-unobtained">Don't have</label>    
+                        <input class="btn-check" id="<%= mount.id %>-unobtained-mount" type="radio" value="f" name="obtained" />
+                        <label class="btn btn-outline-info" for="<%= mount.id %>-unobtained-mount">Don't have</label>    
                     <% } else { %>
-                        <input class="btn-check" id="<%= mount.id %>-obtained" type="radio" value="t" name="obtained" />
-                        <label class="btn btn-outline-success" for="<%= mount.id %>-obtained">Have</label>
+                        <input class="btn-check" id="<%= mount.id %>-obtained-mount" type="radio" value="t" name="obtained" />
+                        <label class="btn btn-outline-success" for="<%= mount.id %>-obtained-mount">Have</label>
     
-                        <input class="btn-check" id="<%= mount.id %>-unobtained" type="radio" value="f" name="obtained" checked />
-                        <label class="btn btn-outline-info" for="<%= mount.id %>-unobtained">Don't have</label>
+                        <input class="btn-check" id="<%= mount.id %>-unobtained-mount" type="radio" value="f" name="obtained" checked />
+                        <label class="btn btn-outline-info" for="<%= mount.id %>-unobtained-mount">Don't have</label>
                     <% } %>
     
                     <button hidden type="submit"></button>
@@ -48,23 +50,25 @@
     
     <% user.minions.forEach(minion => { %>
         <ul class="list-group list-group-horizontal my-3">
-            <!-- TODO: Add Icon -->
-            <a class="list-group-item list-group-item-action" href="/minions/<%= minion.apiId %>"><%= minion.name %></a>
+            <a class="list-group-item list-group-item-action" href="/minions/<%= minion.apiId %>">
+                <img class="mx-3" src="<%= minion.icon %>" />
+                <h5 class="d-inline mx-3"><%= minion.name %></h5>
+            </a>
     
             <li class="list-group-item list-group-item-action">
                 <form method="POST" action="/minions/<%= minion.id %>/?_method=PUT">
                     <% if (minion.obtained) { %>
-                        <input class="btn-check" id="<%= minion.id %>-obtained" type="radio" value="t" name="obtained" checked />
-                        <label class="btn btn-outline-success" for="<%= minion.id %>-obtained">Have</label>
+                        <input class="btn-check" id="<%= minion.id %>-obtained-minion" type="radio" value="t" name="obtained" checked />
+                        <label class="btn btn-outline-success" for="<%= minion.id %>-obtained-minion">Have</label>
     
-                        <input class="btn-check" id="<%= minion.id %>-unobtained" type="radio" value="f" name="obtained" />
-                        <label class="btn btn-outline-info" for="<%= minion.id %>-unobtained">Don't have</label>    
+                        <input class="btn-check" id="<%= minion.id %>-unobtained-minion" type="radio" value="f" name="obtained" />
+                        <label class="btn btn-outline-info" for="<%= minion.id %>-unobtained-minion">Don't have</label>    
                     <% } else { %>
-                        <input class="btn-check" id="<%= minion.id %>-obtained" type="radio" value="t" name="obtained" />
-                        <label class="btn btn-outline-success" for="<%= minion.id %>-obtained">Have</label>
+                        <input class="btn-check" id="<%= minion.id %>-obtained-minion" type="radio" value="t" name="obtained" />
+                        <label class="btn btn-outline-success" for="<%= minion.id %>-obtained-minion">Have</label>
     
-                        <input class="btn-check" id="<%= minion.id %>-unobtained" type="radio" value="f" name="obtained" checked />
-                        <label class="btn btn-outline-info" for="<%= minion.id %>-unobtained">Don't have</label>
+                        <input class="btn-check" id="<%= minion.id %>-unobtained-minion" type="radio" value="f" name="obtained" checked />
+                        <label class="btn btn-outline-info" for="<%= minion.id %>-unobtained-minion">Don't have</label>
                     <% } %>
     
                     <button hidden type="submit"></button>
