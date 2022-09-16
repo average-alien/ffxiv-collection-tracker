@@ -53,5 +53,10 @@ app.get('/', (req, res) => {
     res.render('home.ejs')
 })
 
+app.get('/search', (req, res) => {
+    console.log(req.query)
+    res.redirect(`/${req.query.category}?search=${req.query.navSearch}`)
+})
+
 // listen on a port
 app.listen(PORT, () => console.log(`Pray return to port ${PORT}`))

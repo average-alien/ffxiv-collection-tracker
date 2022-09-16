@@ -84,13 +84,30 @@
                     </li>
                 </ul>
 
+                <form class="container-fluid nav-item d-flex" method="GET" action="/search">
+                    <div class="form-floating me-1">
+                        <input id="nav-search" class="form-control" type="text" placeholder="search" name="navSearch"/>
+                        <label for="nav-search">Search</label>
+                    </div>
+
+                    <div class="form-floating ms-1">
+                        <select id="nav-select" class="form-select" name="category">
+                            <option value="mounts">Mounts</option>
+                            <option value="minions">Minions</option>
+                        </select>
+                        <label for="nav-select">Category</label>
+                    </div>
+
+                    <button hidden class="btn btn-primary" type="submit">Search</button>
+                </form>
+
                 <!-- User related content (right side) -->
-                <div class="navbar-nav container-fluid d-flex justify-content-end">
+                <div class="nav-item container-fluid d-flex justify-content-end">
                     <!-- all data in the res.locals is usable in the layout -->
                     <!-- if the user is logged in.. -->
                     <% if (user) { %>
                     <div class="nav-item dropdown">
-                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <%= user.email %>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
