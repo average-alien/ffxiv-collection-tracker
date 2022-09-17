@@ -14,15 +14,19 @@
             <p class="card-text"><%= minion.enhanced_description %></p>
         </div>
         <div class="card-footer py-3">
+            <!-- if a user is logged in and had NOT saved this -->
             <% if (user && !saved) { %>
+                <!-- display form/button to save -->
                 <form method="POST" action="/minions/users/<%= user.id %>">
                     <input type="number" value="<%= minion.id %>" name="apiId" hidden />
                     <input type="text" value="<%= minion.name %>" name="name" hidden />
                     <input type="text" value="<%= minion.icon %>" name="icon" hidden />
                     <button class="btn btn-info" type="submit">Save?</button>
                 </form>
+            <!-- if a user is logged in and HAS saved this -->
             <% } else if (user && saved) { %>
                 <button class="btn btn-success">Saved!</button>
+            <!-- when user is not logged in -->
             <% } else { %>
                 <button class="btn btn-info">Log in to save</button>
             <% } %>
