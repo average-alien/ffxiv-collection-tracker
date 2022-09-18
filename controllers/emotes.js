@@ -43,6 +43,9 @@ router.get('/:id', async (req, res) => {
     try {
         // API call
         const response = await axios.get(`${url}/${req.params.id}`)
+        const renderData = {
+            emote: response.data
+        }
         // if a user is logged in
         if (res.locals.user) {
             // find if user has saved this emote
@@ -52,18 +55,9 @@ router.get('/:id', async (req, res) => {
                     userId: res.locals.user.id
                 }
             })
-            const saved = await res.locals.user.hasEmote(emote)
-            // necessary data to send to the view
-            const data = {
-                emote: response.data,
-                user: res.locals.user,
-                saved
-            }
-            res.render('emotes/show.ejs', data)
-        // else just send the API response
-        } else {
-            res.render('emotes/show.ejs', {emote: response.data})
+            renderData.saved = await res.locals.user.hasEmote(emote)
         }
+        res.render('emotes/show.ejs', renderData)
     } catch(error) {
         console.warn(error)
         res.send('server error')

@@ -43,6 +43,9 @@ router.get('/:id', async (req, res) => {
     try {
         // API call
         const response = await axios.get(`${url}/${req.params.id}`)
+        const renderData = {
+            minion: response.data
+        }
         // if a user is logged in
         if (res.locals.user) {
             // find if user has saved this minion
@@ -52,18 +55,10 @@ router.get('/:id', async (req, res) => {
                     userId: res.locals.user.id
                 }
             })
-            const saved = await res.locals.user.hasMinion(minion)
-            // necessary data to send to the view
-            const data = {
-                minion: response.data,
-                user: res.locals.user,
-                saved
-            }
-            res.render('minions/show.ejs', data)
-        // else just send the API response
-        } else {
-            res.render('minions/show.ejs', {minion: response.data})
+            renderData.saved = await res.locals.user.hasMinion(minion)
         }
+        // else just send the API response
+        res.render('minions/show.ejs', renderData)
     } catch(error) {
         console.warn(error)
         res.send('server error')
