@@ -44,12 +44,16 @@ router.post('/', async (req, res) => {
 
 // GET /users/login -- show a login form to user
 router.get('/login', (req, res) => {
-    res.render('users/login.ejs', {
-        // if the req.query.message exists, pass it as the message, otherwise pass in null
-        // ternary operator
-        // condition ? expression if truthy : expression if falsey
-        message: req.query.message ? req.query.message : null
-    })
+    if (res.locals.user) {
+        res.redirect('/users/profile')
+    } else {
+        res.render('users/login.ejs', {
+            // if the req.query.message exists, pass it as the message, otherwise pass in null
+            // ternary operator
+            // condition ? expression if truthy : expression if falsey
+            message: req.query.message ? req.query.message : null
+        })
+    }
 })
 
 // POST /users/login -- accept a payload of form data and use it to log a user in
@@ -89,6 +93,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
+// GET /users/proflie -- display the user's profile page (list of saved collectables)
 router.get('/profile', (req, res) => {
     // if the user is not logged in ... we need to redirect to the login form
     if (!res.locals.user) {

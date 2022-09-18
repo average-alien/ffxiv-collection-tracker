@@ -7,22 +7,31 @@ const url = 'https://ffxivcollect.com/api/mounts'
 // GET /mounts -- index of all mounts
 router.get('/', async (req, res) => {
     try {
+        const renderData = {}
+        // if user is logged in
+        if (res.locals.user) {
+            // find their mounts and save the IDs
+            const userMounts = await res.locals.user.getMounts()
+            renderData.userMountsIds = userMounts.map(value => {
+                return value.apiId
+            })
+            renderData.userId = res.locals.user.id
+        } else {
+            renderData.userMountsIds = null
+        }
         // if search paramaters are provided
         if (req.query.search) {
             // pass along search request
             const response = await axios.get(`${url}?name_en_cont=${req.query.search}`)
-            res.render('mounts/index.ejs', {
-                mounts: response.data.results,
-                searchReq: req.query.search
-            })
+            renderData.mounts = response.data.results
+            renderData.searchReq = req.query.search
         // else request the whole whopping index
         } else {
             const response = await axios.get(url)
-            res.render('mounts/index.ejs', {
-                mounts: response.data.results,
-                searchReq: null
-            })
+            renderData.mounts = response.data.results
+            renderData.searchReq = null
         }
+        res.render('mounts/index.ejs', renderData)
     } catch(error) {
         console.warn(error)
         res.send('server error')
