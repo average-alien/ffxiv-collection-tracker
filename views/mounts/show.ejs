@@ -16,7 +16,7 @@
             
         </div>
         <div class="card-footer py-3">
-            <!-- if a user is logged in and had NOT saved this -->
+            <!-- if a user is logged in and has NOT saved this -->
             <% if (user && !saved) { %>
                 <!-- display form/button to save -->
                 <form method="POST" action="/mounts/users/<%= user.id %>">

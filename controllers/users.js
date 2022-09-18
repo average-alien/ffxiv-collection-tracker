@@ -94,15 +94,22 @@ router.get('/logout', (req, res) => {
 })
 
 // GET /users/proflie -- display the user's profile page (list of saved collectables)
-router.get('/profile', (req, res) => {
-    // if the user is not logged in ... we need to redirect to the login form
-    if (!res.locals.user) {
-        res.redirect('/users/login?message=You must login before you can view your profile')
-    // otherwise, show them their profile
-    } else {
-        res.render('users/profile.ejs', {
-            user: res.locals.user
-        })
+router.get('/profile', async (req, res) => {
+    try {
+        // if the user is not logged in ... we need to redirect to the login form
+        if (!res.locals.user) {
+            res.redirect('/users/login?message=You must login before you can view your profile')
+        // otherwise, show them their profile
+        } else {
+            const renderData = {}
+            renderData.mounts = await res.locals.user.getMounts()
+            renderData.minions = await res.locals.user.getMinions()
+            renderData.emotes = await res.locals.user.getEmotes()
+            res.render('users/profile.ejs', renderData)
+        }
+    } catch(error) {
+        console.warn(error)
+        res.send('server error')
     }
 })
 

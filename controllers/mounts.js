@@ -43,6 +43,9 @@ router.get('/:id', async (req, res) => {
     try {
         // API call
         const response = await axios.get(`${url}/${req.params.id}`)
+        const renderData = {
+            mount: response.data
+        }
         // if a user is logged in
         if (res.locals.user) {
             // find if user has saved this mount
@@ -52,18 +55,10 @@ router.get('/:id', async (req, res) => {
                     userId: res.locals.user.id
                 }
             })
-            const saved = await res.locals.user.hasMount(mount)
-            // necessary data to send to the view
-            const data = {
-                mount: response.data,
-                user: res.locals.user,
-                saved
-            }
-            res.render('mounts/show.ejs', data)
-        // else just send the API response
-        } else {
-            res.render('mounts/show.ejs', {mount: response.data})
+            renderData.saved = await res.locals.user.hasMount(mount)
         }
+        // else just send the API response
+        res.render('mounts/show.ejs', renderData)
     } catch(error) {
         console.warn(error)
         res.send('server error')

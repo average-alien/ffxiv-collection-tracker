@@ -3,11 +3,11 @@
 <div class="container text-center my-5">
     <h3>Mounts</h3>
 
-    <% if (user.mounts.length <= 0) { %>
+    <% if (mounts.length <= 0) { %>
         <p>No mounts saved 😞 Try searching for some to track!</p>
     <% } %>
     
-    <% user.mounts.forEach(mount => { %>
+    <% mounts.forEach(mount => { %>
         <ul class="list-group list-group-horizontal my-3">
             <a class="list-group-item list-group-item-action" href="/mounts/<%= mount.apiId %>">
                 <img class="mx-3" src="<%= mount.icon %>" />
@@ -44,11 +44,11 @@
 <div class="container text-center my-5">
     <h3>Minions</h3>
 
-    <% if (user.minions.length <= 0) { %>
+    <% if (minions.length <= 0) { %>
         <p>No minions saved 😞 Try searching for some to track!</p>
     <% } %>
     
-    <% user.minions.forEach(minion => { %>
+    <% minions.forEach(minion => { %>
         <ul class="list-group list-group-horizontal my-3">
             <a class="list-group-item list-group-item-action" href="/minions/<%= minion.apiId %>">
                 <img class="mx-3" src="<%= minion.icon %>" />
@@ -85,11 +85,11 @@
 <div class="container text-center my-5">
     <h3>Emotes</h3>
 
-    <% if (user.emotes.length <= 0) { %>
+    <% if (emotes.length <= 0) { %>
         <p>No emotes saved 😞 Try searching for some to track!</p>
     <% } %>
     
-    <% user.emotes.forEach(emote => { %>
+    <% emotes.forEach(emote => { %>
         <ul class="list-group list-group-horizontal my-3">
             <a class="list-group-item list-group-item-action" href="/emotes/<%= emote.apiId %>">
                 <img class="mx-3" src="<%= emote.icon %>" />
