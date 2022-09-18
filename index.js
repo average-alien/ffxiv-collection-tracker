@@ -53,7 +53,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-    console.log(req.query)
     res.redirect(`/${req.query.category}?search=${req.query.navSearch}`)
 })
 

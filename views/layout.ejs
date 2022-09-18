@@ -94,12 +94,7 @@
 
                 <!-- Form to search any category -->
                 <form class="container-fluid nav-item d-flex" method="GET" action="/search">
-                    <div class="form-floating me-1">
-                        <input id="nav-search" class="form-control" type="text" placeholder="search" name="navSearch"/>
-                        <label for="nav-search">Search</label>
-                    </div>
-
-                    <div class="form-floating ms-1">
+                    <div class="form-floating">
                         <select id="nav-select" class="form-select" name="category">
                             <option value="mounts">Mounts</option>
                             <option value="minions">Minions</option>
@@ -108,7 +103,12 @@
                         <label for="nav-select">Category</label>
                     </div>
 
-                    <button hidden class="btn btn-primary" type="submit">Search</button>
+                    <div class="form-floating mx-2">
+                        <input id="nav-search" class="form-control" type="text" placeholder="search" name="navSearch"/>
+                        <label for="nav-search">Search</label>
+                    </div>
+
+                    <button class="btn btn-primary py-0" type="submit">Search</button>
                 </form>
 
                 <!-- User related content (right side) -->
