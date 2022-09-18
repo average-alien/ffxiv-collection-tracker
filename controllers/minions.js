@@ -7,22 +7,31 @@ const url = "https://ffxivcollect.com/api/minions"
 // GET /minions -- index of all minions
 router.get('/', async (req, res) => {
     try {
+        const renderData = {}
+        // if user is logged in
+        if (res.locals.user) {
+            // find their minions and save the IDs
+            const userMinions = await res.locals.user.getMinions()
+            renderData.userMinionsIds = userMinions.map(value => {
+                return value.apiId
+            })
+            renderData.userId = res.locals.user.id
+        } else {
+            renderData.userMinionsIds = null
+        }
         // if search paramaters are provided
         if (req.query.search) {
             // pass along search request
             const response = await axios.get(`${url}?name_en_cont=${req.query.search}`)
-            res.render('minions/index.ejs', {
-                minions: response.data.results,
-                searchReq: req.query.search
-            })
+            renderData.minions = response.data.results
+            renderData.searchReq = req.query.search
         // else request the whole whopping index
         } else {
             const response = await axios.get(url)
-            res.render('minions/index.ejs', {
-                minions: response.data.results,
-                searchReq: null
-            })
+            renderData.minions = response.data.results
+            renderData.searchReq = null
         }
+        res.render('minions/index.ejs', renderData)
     } catch(error) {
         console.warn(error)
         res.send('server error')
@@ -75,7 +84,7 @@ router.post('/users/:id', async (req, res) => {
                 obtained: false
             }
         })
-        res.redirect(`/minions/${req.body.apiId}`)
+        res.redirect(`back`)
     } catch (error) {
         console.warn(error)
         res.send('server error')

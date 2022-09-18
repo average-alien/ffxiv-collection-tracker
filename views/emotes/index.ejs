@@ -16,11 +16,24 @@
 <ul class="container list-group">
     <% emotes.forEach(emote => { %>
         <li class="list-group-item">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between align-items-center">
                 <a class="d-flex align-items-center" href="/emotes/<%= emote.id %>">
                     <img class="m-3" src="<%= emote.icon %>" width="40" height="40" />
                     <h5 class="text-center m-0"><%= emote.name %></h5>
                 </a>
+
+                <% if (userEmotesIds) { %>
+                    <% if (userEmotesIds.includes(emote.id)) { %>
+                        <button class="btn btn-success py-2">Saved!</button>
+                    <% } else { %>
+                        <form method="POST" action="/emotes/users/<%= userId %>">
+                            <input type="number" value="<%= emote.id %>" name="apiId" hidden />
+                            <input type="text" value="<%= emote.name %>" name="name" hidden />
+                            <input type="text" value="<%= emote.icon %>" name="icon" hidden />
+                            <button class="btn btn-info py-2" type="submit">Save?</button>
+                        </form>
+                    <% } %>
+                <% } %>
             </div>
         </li>
     <% }) %>

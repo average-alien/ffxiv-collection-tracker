@@ -7,22 +7,31 @@ const url = 'https://ffxivcollect.com/api/emotes'
 // GET /emotes -- index of all emotes
 router.get('/', async (req, res) => {
     try {
+        const renderData = {}
+        // if user is logged in
+        if (res.locals.user) {
+            // find their emotes and save the IDs
+            const userEmotes = await res.locals.user.getEmotes()
+            renderData.userEmotesIds = userEmotes.map(value => {
+                return value.apiId
+            })
+            renderData.userId = res.locals.user.id
+        } else {
+            renderData.userEmotesIds = null
+        }
         // if search paramaters are provided
         if (req.query.search) {
             // pass along search request
             const response = await axios.get(`${url}?name_en_cont=${req.query.search}`)
-            res.render('emotes/index.ejs', {
-                emotes: response.data.results,
-                searchReq: req.query.search
-            })
+            renderData.emotes = response.data.results
+            renderData.searchReq = req.query.search
         // else request the whole whopping index
         } else {
             const response = await axios.get(url)
-            res.render('emotes/index.ejs', {
-                emotes: response.data.results,
-                searchReq: null
-            })
+            renderData.emotes = response.data.results
+            renderData.searchReq = null
         }
+        res.render('emotes/index.ejs', renderData)
     } catch(error) {
         console.warn(error)
         res.send('server error')
