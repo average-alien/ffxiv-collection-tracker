@@ -3,8 +3,9 @@
     <h2 class="text-center mx-2">Emotes</h2>
 </div>
 
-<div class="card container my-5">
-    <div class="card-body d-flex align-items-center">
+<div class="container">
+<div class="card my-5">
+    <div class="card-header d-flex align-items-center">
         <img class="float-left" src="<%= emote.icon %>" />
 
         <h3 class="card-title mx-3"><%= emote.name %></h3>
@@ -24,19 +25,19 @@
         <% } %>
 
         <li class="list-group-item">Percent owned: <%= emote.owned %></li>
-
-        <li class="list-group-item">
-            <p>How to obtain:</p>
-
-            <ul>
-                <% emote.sources.forEach(source => { %>
-                    <li>
-                        <p><%= source.type %>: <%= source.text %></p>
-                    </li>
-                <% }) %>
-            </ul>
-        </li>
     </ul>
+
+    <div class="card-body">
+        <p>How to obtain:</p>
+
+        <ul>
+            <% emote.sources.forEach(source => { %>
+                <li>
+                    <p><%= source.type %> -- <%= source.text %></p>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
 
     <div class="card-footer py-3">
         <!-- if a user is logged in and had NOT saved this -->
@@ -56,4 +57,5 @@
             <button class="btn btn-info">Log in to save</button>
         <% } %>
     </div>
+</div>
 </div>
