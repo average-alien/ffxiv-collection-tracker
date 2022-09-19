@@ -29,7 +29,7 @@
                     <% if (userEmotesIds.includes(emote.id)) { %>
                         <button class="btn btn-success py-2">Saved!</button>
                     <% } else { %>
-                        <form method="POST" action="/emotes/users/<%= userId %>">
+                        <form method="POST" action="/emotes/users/<%= user.id %>">
                             <input type="number" value="<%= emote.id %>" name="apiId" hidden />
                             <input type="text" value="<%= emote.name %>" name="name" hidden />
                             <input type="text" value="<%= emote.icon %>" name="icon" hidden />

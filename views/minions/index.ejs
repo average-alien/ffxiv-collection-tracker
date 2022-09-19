@@ -29,7 +29,7 @@
                     <% if (userMinionsIds.includes(minion.id)) { %>
                         <button class="btn btn-success py-2">Saved!</button>
                     <% } else { %>
-                        <form method="POST" action="/minions/users/<%= userId %>">
+                        <form method="POST" action="/minions/users/<%= user.id %>">
                             <input type="number" value="<%= minion.id %>" name="apiId" hidden />
                             <input type="text" value="<%= minion.name %>" name="name" hidden />
                             <input type="text" value="<%= minion.icon %>" name="icon" hidden />

@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
             renderData.userMinionsIds = userMinions.map(value => {
                 return value.apiId
             })
-            renderData.userId = res.locals.user.id
         } else {
             renderData.userMinionsIds = null
         }

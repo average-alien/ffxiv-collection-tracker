@@ -29,7 +29,7 @@
                     <% if (userMountsIds.includes(mount.id)) { %>
                         <button class="btn btn-success py-2">Saved!</button>
                     <% } else { %>
-                        <form method="POST" action="/mounts/users/<%= userId %>">
+                        <form method="POST" action="/mounts/users/<%= user.id %>">
                             <input type="number" value="<%= mount.id %>" name="apiId" hidden />
                             <input type="text" value="<%= mount.name %>" name="name" hidden />
                             <input type="text" value="<%= mount.icon %>" name="icon" hidden />

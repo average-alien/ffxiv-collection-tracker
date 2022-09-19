@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
             renderData.userEmotesIds = userEmotes.map(value => {
                 return value.apiId
             })
-            renderData.userId = res.locals.user.id
         } else {
             renderData.userEmotesIds = null
         }
