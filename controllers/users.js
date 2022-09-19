@@ -103,7 +103,8 @@ router.get('/profile', async (req, res) => {
             const renderData = {
                 mounts: await res.locals.user.getMounts(),
                 minions: await res.locals.user.getMinions(),
-                emotes: await res.locals.user.getEmotes()
+                emotes: await res.locals.user.getEmotes(),
+                bardings: await res.locals.user.getBardings()
             }
             res.render('users/profile.ejs', renderData)
         }

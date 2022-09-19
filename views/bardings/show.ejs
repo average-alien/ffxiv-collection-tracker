@@ -1,0 +1,57 @@
+<div class="container d-flex justify-content-center mt-5">
+    <img class="mx-2" src="/icons/companions.png" />
+    <h2 class="text-center mx-2">Bardings</h2>
+</div>
+
+<div class="container">
+    <div class="card my-5">
+        <div class="card-header d-flex align-items-center">
+            <img class="float-left" src="<%= barding.icon %>" />
+
+            <h3 class="card-title mx-3"><%= barding.name %></h3>
+        </div>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Added in patch <%= barding.patch %></li>
+
+            <% if (barding.tradeable) { %>
+                <li class="list-group-item">Tradeable: Yes</li>
+            <% } else { %>
+                <li class="list-group-item">Tradeable: No</li>
+            <% } %>
+
+            <li class="list-group-item">Percent owned: <%= barding.owned %></li>
+        </ul>
+
+        <div class="card-body">
+            <p>How to obtain:</p>
+
+            <ul>
+                <% barding.sources.forEach(source => { %>
+                    <li>
+                        <p><%= source.type %> -- <%= source.text %></p>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+
+        <div class="card-footer py-3">
+            <!-- if a user is logged in and had NOT saved this -->
+            <% if (user && !saved) { %>
+                <!-- display form/button to save -->
+                <form method="POST" action="/bardings/users/<%= user.id %>">
+                    <input type="number" value="<%= barding.id %>" name="apiId" hidden />
+                    <input type="text" value="<%= barding.name %>" name="name" hidden />
+                    <input type="text" value="<%= barding.icon %>" name="icon" hidden />
+                    <button class="btn btn-info" type="submit">Save?</button>
+                </form>
+            <!-- if a user is logged in and HAS saved this -->
+            <% } else if (user && saved) { %>
+                <button class="btn btn-success">Saved!</button>
+            <!-- when user is not logged in -->
+            <% } else { %>
+                <button class="btn btn-info">Log in to save</button>
+            <% } %>
+        </div>
+    </div>
+</div>

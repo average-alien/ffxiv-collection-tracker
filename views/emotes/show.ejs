@@ -4,58 +4,58 @@
 </div>
 
 <div class="container">
-<div class="card my-5">
-    <div class="card-header d-flex align-items-center">
-        <img class="float-left" src="<%= emote.icon %>" />
+    <div class="card my-5">
+        <div class="card-header d-flex align-items-center">
+            <img class="float-left" src="<%= emote.icon %>" />
 
-        <h3 class="card-title mx-3"><%= emote.name %></h3>
-    </div>
+            <h3 class="card-title mx-3"><%= emote.name %></h3>
+        </div>
 
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Added in patch <%= emote.patch %></li>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Added in patch <%= emote.patch %></li>
 
-        <li class="list-group-item">Text command(s): <%= emote.command %></li>
+            <li class="list-group-item">Text command(s): <%= emote.command %></li>
 
-        <li class="list-group-item">Category: <%= emote.category.name %></li>
+            <li class="list-group-item">Category: <%= emote.category.name %></li>
 
-        <% if (emote.tradeable) { %>
-            <li class="list-group-item">Tradeable: Yes</li>
-        <% } else { %>
-            <li class="list-group-item">Tradeable: No</li>
-        <% } %>
+            <% if (emote.tradeable) { %>
+                <li class="list-group-item">Tradeable: Yes</li>
+            <% } else { %>
+                <li class="list-group-item">Tradeable: No</li>
+            <% } %>
 
-        <li class="list-group-item">Percent owned: <%= emote.owned %></li>
-    </ul>
-
-    <div class="card-body">
-        <p>How to obtain:</p>
-
-        <ul>
-            <% emote.sources.forEach(source => { %>
-                <li>
-                    <p><%= source.type %> -- <%= source.text %></p>
-                </li>
-            <% }) %>
+            <li class="list-group-item">Percent owned: <%= emote.owned %></li>
         </ul>
-    </div>
 
-    <div class="card-footer py-3">
-        <!-- if a user is logged in and had NOT saved this -->
-        <% if (user && !saved) { %>
-            <!-- display form/button to save -->
-            <form method="POST" action="/emotes/users/<%= user.id %>">
-                <input type="number" value="<%= emote.id %>" name="apiId" hidden />
-                <input type="text" value="<%= emote.name %>" name="name" hidden />
-                <input type="text" value="<%= emote.icon %>" name="icon" hidden />
-                <button class="btn btn-info" type="submit">Save?</button>
-            </form>
-        <!-- if a user is logged in and HAS saved this -->
-        <% } else if (user && saved) { %>
-            <button class="btn btn-success">Saved!</button>
-        <!-- when user is not logged in -->
-        <% } else { %>
-            <button class="btn btn-info">Log in to save</button>
-        <% } %>
+        <div class="card-body">
+            <p>How to obtain:</p>
+
+            <ul>
+                <% emote.sources.forEach(source => { %>
+                    <li>
+                        <p><%= source.type %> -- <%= source.text %></p>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+
+        <div class="card-footer py-3">
+            <!-- if a user is logged in and had NOT saved this -->
+            <% if (user && !saved) { %>
+                <!-- display form/button to save -->
+                <form method="POST" action="/emotes/users/<%= user.id %>">
+                    <input type="number" value="<%= emote.id %>" name="apiId" hidden />
+                    <input type="text" value="<%= emote.name %>" name="name" hidden />
+                    <input type="text" value="<%= emote.icon %>" name="icon" hidden />
+                    <button class="btn btn-info" type="submit">Save?</button>
+                </form>
+            <!-- if a user is logged in and HAS saved this -->
+            <% } else if (user && saved) { %>
+                <button class="btn btn-success">Saved!</button>
+            <!-- when user is not logged in -->
+            <% } else { %>
+                <button class="btn btn-info">Log in to save</button>
+            <% } %>
+        </div>
     </div>
-</div>
 </div>

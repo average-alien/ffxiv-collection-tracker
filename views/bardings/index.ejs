@@ -1,0 +1,43 @@
+<div class="container d-flex justify-content-center mt-5">
+    <img class="mx-2" src="/icons/companions.png" />
+    <h2 class="text-center mx-2">Bardings</h2>
+</div>
+
+<form class="container d-flex justify-content-center align-items-center my-4 mx-auto" method="GET" action="/bardings">
+    <div class="form-floating">
+        <% if (searchReq) { %>
+            <input class="form-control" id="search" type="text" name="search" value="<%= searchReq %>" placeholder="wind-up" />
+        <% } else { %>
+            <input class="form-control" id="search" type="text" name="search" placeholder="wind-up" />
+        <% } %>
+        <label for="search">Search bardings</label>
+    </div>
+        
+    <button class="btn btn-primary m-3" type="submit">Search</button>
+</form>
+
+<ul class="container list-group">
+    <% bardings.forEach(barding => { %>
+        <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="d-flex align-items-center" href="/bardings/<%= barding.id %>">
+                    <img class="m-3" src="<%= barding.icon %>" width="40" height="40" />
+                    <h5 class="text-center m-0"><%= barding.name %></h5>
+                </a>
+
+                <% if (userBardingsIds) { %>
+                    <% if (userBardingsIds.includes(barding.id)) { %>
+                        <button class="btn btn-success py-2">Saved!</button>
+                    <% } else { %>
+                        <form method="POST" action="/bardings/users/<%= user.id %>">
+                            <input type="number" value="<%= barding.id %>" name="apiId" hidden />
+                            <input type="text" value="<%= barding.name %>" name="name" hidden />
+                            <input type="text" value="<%= barding.icon %>" name="icon" hidden />
+                            <button class="btn btn-info py-2" type="submit">Save?</button>
+                        </form>
+                    <% } %>
+                <% } %>
+            </div>
+        </li>
+    <% }) %>
+</ul>
