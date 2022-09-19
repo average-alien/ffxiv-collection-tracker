@@ -34,3 +34,13 @@ obtained: boolean
 userId: INTEGER
 
 sequelize model:create --name emote --attributes apiId:integer,name:string,icon:string,obtained:boolean,userId:integer
+
+BARDINGS MODEL
+--------------
+apiId: INTEGER
+name: VARCHAR
+icon: VARCHAR
+obtained: boolean
+userId: INTEGER
+
+sequelize model:create --name barding --attributes apiId:integer,name:string,icon:string,obtained:boolean,userId:integer

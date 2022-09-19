@@ -46,6 +46,7 @@ app.use('/users', require('./controllers/users'))
 app.use('/mounts', require('./controllers/mounts'))
 app.use('/minions', require('./controllers/minions'))
 app.use('/emotes', require('./controllers/emotes'))
+app.use('/bardings', require('./controllers/bardings'))
 
 // route definitions
 // GET / for the home page
