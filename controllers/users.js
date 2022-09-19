@@ -24,9 +24,8 @@ router.post('/', async (req, res) => {
             }
         })
 
-        // if the user was found...send them to the login form
         if (!created) {
-            console.log('user exists already')
+            // if the user was found...send them to the login form
             res.redirect('/users/login?message=Account already exists, please log in to continue.')
         } else {
             // tell the browser to store the user creds as a cookie
@@ -101,10 +100,11 @@ router.get('/profile', async (req, res) => {
             res.redirect('/users/login?message=You must login before you can view your profile')
         // otherwise, show them their profile
         } else {
-            const renderData = {}
-            renderData.mounts = await res.locals.user.getMounts()
-            renderData.minions = await res.locals.user.getMinions()
-            renderData.emotes = await res.locals.user.getEmotes()
+            const renderData = {
+                mounts: await res.locals.user.getMounts(),
+                minions: await res.locals.user.getMinions(),
+                emotes: await res.locals.user.getEmotes()
+            }
             res.render('users/profile.ejs', renderData)
         }
     } catch(error) {
