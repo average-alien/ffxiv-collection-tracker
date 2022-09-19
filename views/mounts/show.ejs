@@ -41,33 +41,31 @@
     </div>
 
     <div class="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Added in patch <%= mount.patch %></li>
+
+            <li class="list-group-item"># of Seats: <%= mount.seats %></li>
+            
+            <li class="list-group-item">Movement type: <%= mount.movement %></li>
+            
+            <% if (mount.tradeable) { %>
+                <li class="list-group-item">Tradeable: Yes</li>
+            <% } else { %>
+                <li class="list-group-item">Tradeable: No</li>
+            <% } %>
+            
+            <li class="list-group-item">Percent owned: <%= mount.owned %></li>
+        </ul>
+
         <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Added in patch <%= mount.patch %></li>
-    
-                <li class="list-group-item"># of Seats: <%= mount.seats %></li>
-                
-                <li class="list-group-item">Movement type: <%= mount.movement %></li>
-                
-                <% if (mount.tradeable) { %>
-                    <li class="list-group-item">Tradeable: Yes</li>
-                <% } else { %>
-                    <li class="list-group-item">Tradeable: No</li>
-                <% } %>
-                
-                <li class="list-group-item">Percent owned: <%= mount.owned %></li>
-                
-                <li class="list-group-item">
-                    <p>How to obtain:</p>
-    
-                    <ul>
-                        <% mount.sources.forEach(source => { %>
-                            <li>
-                                <p><%= source.type %>: <%= source.text %></p>
-                            </li>
-                        <% }) %>
-                    </ul>
-                </li>
+            <p>How to obtain:</p>
+
+            <ul>
+                <% mount.sources.forEach(source => { %>
+                    <li>
+                        <p><%= source.type %>: <%= source.text %></p>
+                    </li>
+                <% }) %>
             </ul>
         </div>
 
