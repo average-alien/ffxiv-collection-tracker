@@ -3,6 +3,6 @@ const radio = document.querySelectorAll('.btn-check')
 
 radio.forEach(button =>{
     button.addEventListener('change', (e) => {
-        e.path[2].requestSubmit()
+        e.path[1].requestSubmit()
     })
 })
