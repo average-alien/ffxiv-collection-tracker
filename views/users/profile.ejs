@@ -1,7 +1,10 @@
 <h2 class="my-3 text-center">Here's your collection <%= user.email %>!</h2>
 
 <div class="container text-center my-5">
-    <h3>Mounts</h3>
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <img class="mx-2" src="/icons/mount_guide.png" />
+        <h3 class="mx-2">Mounts</h3>
+    </div>
 
     <% if (mounts.length <= 0) { %>
         <p>No mounts saved 😞 Try searching for some to track!</p>
@@ -42,7 +45,10 @@
 </div>
 
 <div class="container text-center my-5">
-    <h3>Minions</h3>
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <img class="mx-2" src="/icons/minion_guide.png" />
+        <h3 class="mx-2">Minions</h3>
+    </div>
 
     <% if (minions.length <= 0) { %>
         <p>No minions saved 😞 Try searching for some to track!</p>
@@ -83,7 +89,10 @@
 </div>
 
 <div class="container text-center my-5">
-    <h3>Emotes</h3>
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <img class="mx-2" src="/icons/emotes.png" />
+        <h3 class="mx-2">Emotes</h3>
+    </div>
 
     <% if (emotes.length <= 0) { %>
         <p>No emotes saved 😞 Try searching for some to track!</p>
