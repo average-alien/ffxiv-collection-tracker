@@ -12,12 +12,7 @@
     
     <% mounts.forEach(mount => { %>
         <ul class="list-group list-group-horizontal my-3">
-            <a class="list-group-item list-group-item-action" href="/mounts/<%= mount.apiId %>">
-                <img class="mx-3" src="<%= mount.icon %>" />
-                <h5 class="d-inline mx-3"><%= mount.name %></h5>
-            </a>
-    
-            <li class="list-group-item w-25">
+            <li class="list-group-item w-50 d-flex justify-content-end">
                 <form class="btn-group" method="POST" action="/mounts/<%= mount.id %>/?_method=PUT">
                     <% if (mount.obtained) { %>
                             <input class="btn-check" id="<%= mount.id %>-obtained-mount" type="radio" value="t" name="obtained" checked />
@@ -34,7 +29,12 @@
                     <% } %>
                 </form>
             </li>
-    
+
+            <a class="list-group-item list-group-item-action d-flex justify-content-start align-items-center" href="/mounts/<%= mount.apiId %>">
+                <img class="me-2" src="<%= mount.icon %>" />
+                <h5 class="d-inline mx-2"><%= mount.name %></h5>
+            </a>
+
             <form method="POST" action="/mounts/<%= mount.id %>/?_method=DELETE">
                 <button class="list-group-item list-group-item-action list-group-item-danger py-3" type="submit">Remove</button>
             </form>
@@ -54,12 +54,7 @@
     
     <% minions.forEach(minion => { %>
         <ul class="list-group list-group-horizontal my-3">
-            <a class="list-group-item list-group-item-action" href="/minions/<%= minion.apiId %>">
-                <img class="mx-3" src="<%= minion.icon %>" />
-                <h5 class="d-inline mx-3"><%= minion.name %></h5>
-            </a>
-    
-            <li class="list-group-item w-25">
+            <li class="list-group-item w-50 d-flex justify-content-end align-items-center">
                 <form class="btn-group" method="POST" action="/minions/<%= minion.id %>/?_method=PUT">
                     <% if (minion.obtained) { %>
                         <input class="btn-check" id="<%= minion.id %>-obtained-minion" type="radio" value="t" name="obtained" checked />
@@ -76,6 +71,11 @@
                     <% } %>
                 </form>
             </li>
+
+            <a class="list-group-item list-group-item-action d-flex justify-content-start align-items-center" href="/minions/<%= minion.apiId %>">
+                <img class="me-2" src="<%= minion.icon %>" />
+                <h5 class="d-inline mx-2"><%= minion.name %></h5>
+            </a>
     
             <form method="POST" action="/minions/<%= minion.id %>/?_method=DELETE">
                 <button class="list-group-item list-group-item-action list-group-item-danger py-3" type="submit">Remove</button>
@@ -96,12 +96,7 @@
     
     <% emotes.forEach(emote => { %>
         <ul class="list-group list-group-horizontal my-3">
-            <a class="list-group-item list-group-item-action" href="/emotes/<%= emote.apiId %>">
-                <img class="mx-3" src="<%= emote.icon %>" />
-                <h5 class="d-inline mx-3"><%= emote.name %></h5>
-            </a>
-    
-            <li class="list-group-item w-25">
+            <li class="list-group-item w-50 d-flex justify-content-end align-items-center">
                 <form class="btn-group" method="POST" action="/emotes/<%= emote.id %>/?_method=PUT">
                     <% if (emote.obtained) { %>
                         <input class="btn-check" id="<%= emote.id %>-obtained-emote" type="radio" value="t" name="obtained" checked />
@@ -118,6 +113,11 @@
                     <% } %>
                 </form>
             </li>
+    
+            <a class="list-group-item list-group-item-action d-flex justify-content-start align-items-center" href="/emotes/<%= emote.apiId %>">
+                <img class="me-2" src="<%= emote.icon %>" />
+                <h5 class="d-inline mx-2"><%= emote.name %></h5>
+            </a>
     
             <form method="POST" action="/emotes/<%= emote.id %>/?_method=DELETE">
                 <button class="list-group-item list-group-item-action list-group-item-danger py-3" type="submit">Remove</button>
