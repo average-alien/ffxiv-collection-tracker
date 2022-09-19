@@ -48,10 +48,12 @@ app.use('/minions', require('./controllers/minions'))
 app.use('/emotes', require('./controllers/emotes'))
 
 // route definitions
+// GET / for the home page
 app.get('/', (req, res) => {
     res.render('home.ejs')
 })
 
+// GET /search to redirect the nav search bar to the appropriate search route
 app.get('/search', (req, res) => {
     res.redirect(`/${req.query.category}?search=${req.query.navSearch}`)
 })
