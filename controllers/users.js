@@ -101,10 +101,10 @@ router.get('/profile', async (req, res) => {
         // otherwise, show them their profile
         } else {
             const renderData = {
-                mounts: await res.locals.user.getMounts(),
-                minions: await res.locals.user.getMinions(),
-                emotes: await res.locals.user.getEmotes(),
-                bardings: await res.locals.user.getBardings()
+                mounts: await res.locals.user.getMounts({order: ['name']}),
+                minions: await res.locals.user.getMinions({order: ['name']}),
+                emotes: await res.locals.user.getEmotes({order: ['name']}),
+                bardings: await res.locals.user.getBardings({order: ['name']})
             }
             res.render('users/profile.ejs', renderData)
         }
