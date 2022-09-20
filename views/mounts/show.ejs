@@ -5,21 +5,20 @@
 
 <div class="container card-group my-5">
     <div class="card">
-        
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
                 <img class="px-5" src="<%= mount.image %>" />
-                
+
                 <h6 class="text-wrap"><%= mount.tooltip %></h6>
             </div>
 
             <h2 class="card-title"><%= mount.name %></h2>
-            
+
             <p class="card-text"><%= mount.description %></p>
-            
+
             <p class="card-text"><%= mount.enhanced_description %></p>
-            
         </div>
+
         <div class="card-footer py-3">
             <!-- if a user is logged in and has NOT saved this -->
             <% if (user && !saved) { %>
@@ -28,6 +27,7 @@
                     <input type="number" value="<%= mount.id %>" name="apiId" hidden />
                     <input type="text" value="<%= mount.name %>" name="name" hidden />
                     <input type="text" value="<%= mount.icon %>" name="icon" hidden />
+
                     <button class="btn btn-info" type="submit">Save?</button>
                 </form>
             <!-- if a user is logged in and HAS saved this -->
@@ -45,15 +45,15 @@
             <li class="list-group-item">Added in patch <%= mount.patch %></li>
 
             <li class="list-group-item"># of Seats: <%= mount.seats %></li>
-            
+
             <li class="list-group-item">Movement type: <%= mount.movement %></li>
-            
+
             <% if (mount.tradeable) { %>
                 <li class="list-group-item">Tradeable: Yes</li>
             <% } else { %>
                 <li class="list-group-item">Tradeable: No</li>
             <% } %>
-            
+
             <li class="list-group-item">Percent owned: <%= mount.owned %></li>
         </ul>
 

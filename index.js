@@ -33,7 +33,6 @@ app.use(async (req, res, next) => {
         } else {
             res.locals.user = null
         }
-        
         // move on to the next middleware or route in the chain
         next()
     } catch(error) {

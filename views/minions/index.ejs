@@ -12,7 +12,7 @@
         <% } %>
         <label for="search">Search minions</label>
     </div>
-        
+
     <button class="btn btn-primary m-3" type="submit">Search</button>
 </form>
 
@@ -33,6 +33,7 @@
                             <input type="number" value="<%= minion.id %>" name="apiId" hidden />
                             <input type="text" value="<%= minion.name %>" name="name" hidden />
                             <input type="text" value="<%= minion.icon %>" name="icon" hidden />
+
                             <button class="btn btn-info py-2" type="submit">Save?</button>
                         </form>
                     <% } %>
