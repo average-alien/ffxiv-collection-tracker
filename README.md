@@ -1,6 +1,8 @@
 # FFXIV Collection Tracker
 
-Website where you can search for and view various collectables in the MMORPG Final Fantasy XIV Online. By creating an account, users can also add collectables to a list and mark them as obtained or unobtained. Users can view their list on their profile page for easier tracking of all the goodies they want to get.
+https://ffxiv-collectables-average-alien.koyeb.app/
+
+Website where you can search for and view various collectables in the critically acclaimed MMORPG Final Fantasy XIV Online. By creating an account, users can also add collectables to a list and mark them as obtained or unobtained. Users can view their list on their profile page for easier tracking of all the goodies they want to get.
 
 
 ## API
@@ -14,6 +16,8 @@ API that provides data on all (if not most) of the collectables in the game. No 
 ## ERD
 ![ERD](./media/readme/ERD.drawio.svg)
 
+Similar tables can be added for each additional collectable category I add
+
 
 ## RESTful Routing Chart
 | VERB | URL | ACTION | DESCRIPTION |
@@ -26,16 +30,16 @@ API that provides data on all (if not most) of the collectables in the game. No 
 | GET | /users/logout | READ? | logout the user
 | GET | /mounts | READ | mount index
 | GET | /mounts/:id | READ | show page for specific mount
+| POST | /mounts/users/:id | CREATE | add mount to user's list
+| PUT | /mounts/:id | UPDATE | mark mount as obtained or not
+| DELETE | /mounts/:id | DESTROY | remove mount from list
 | GET | /minions | READ | minion index
 | GET | /minions/:id | READ | show page for specific minion
-| POST | /users/:id/mounts | CREATE | add mount to user's list
-| PUT | /users/:id/mounts/:id | UPDATE | mark mount as obtained or not
-| DELETE | /users/:id/mounts/:id | DESTROY | remove mount from list
-| POST | /users/:id/minions | CREATE | add minion to user's list
-| PUT | /users/:id/minions/:id | UPDATE | mark minion as obtained or not
-| DELETE | /users/:id/minions/:id | DESTROY | remove minion from list
+| POST | /minions/users/:id | CREATE | add minion to user's list
+| PUT | /minions/:id | UPDATE | mark minion as obtained or not
+| DELETE | /minions/:id | DESTROY | remove minion from list
 
-More routes can be added for extra categories I add to the DB
+Similar routes can be added for extra collectable categories I add to the DB
 
 ## Wireframes
 ### forms
@@ -44,7 +48,7 @@ More routes can be added for extra categories I add to the DB
 ### indexes
 ![index wireframe](./media/readme/index.drawio.svg)
 
-### show
+### shows
 ![show wireframe](./media/readme/show.drawio.svg)
 
 ### user profile
@@ -62,16 +66,23 @@ More routes can be added for extra categories I add to the DB
 
 ## MVP / Stretch Goals
 ### MVP
-- [] Display an index page for each collectable category (mounts and minions for now)
-- [] Allow users to search for collectables by name within each category
-- [] Display a show page with details on a specific colelctable
-- [] Let users create accounts and log in with them (with secured auth)
-- [] Let users add collectables to their personal track list
-- [] Let users mark those collectables as obtained or not
-- [] Let users remove collectables from their track list
+- [x] Display an index page for each collectable category
+- [x] Allow users to search for collectables by name within each category
+- [x] Display a show page with details on a specific colelctable
+- [x] Let users create accounts and log in with them (with secured auth)
+- [x] Let users add collectables to their personal track list
+- [x] Let users mark those collectables as obtained or not
+- [x] Let users remove collectables from their track list
 
 ### Stretch
-- [] Add more collectable categories (the api provides data on around 15 different categories)
+- [x] Add more collectable categories (WIP)
 - [] Give users the ability to search through their personal lists
 - [] Allow users to track multiple characters (players can have multiple characters which have unique collection progress)
 - [] 
+
+## Tech used
+- 
+
+## Approch Taken
+
+## Post-project Reflection
