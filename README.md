@@ -76,17 +76,22 @@ Similar routes can be added for extra collectable categories I add to the DB
 
 ### Stretch
 - [x] Add more collectable categories (WIP)
+- [x] Add the ability to search any category from the nav bar
+- [] Sort and possibly filter any lists or indexes
 - [] Give users the ability to search through their personal lists
 - [] Allow users to track multiple characters (players can have multiple characters which have unique collection progress)
 - [] 
 
 ## Tech used
-- 
-- Bootstrap for CSS
+- express and node for running the server
+- axios for fetching API data
+- sequelize and postgresql for database management
+- ejs and express-ejs-layouts for page views
+- Bootstrap for CSS framework
 
 
-## Approch Taken
+## Approach Taken
 I split the project up into a few different aspects that I could tackle one by one. The first one that I worked on was the database and models. Using sequelize, I set up the database I would need for my project and did some testing to verify that it was working as intended. Then I moved onto setting up my routes with express by following my RESTful routing chart. I tested each route with simple responses to ensure that each route was doing what I wanted (hitting the API appropriately and receiving the expected data response or performing CRUD operations on my database correctly). From here I moved onto setting up some basic views for each route. I verified what information from each route I wanted to display to the user and laid it out in a way that made most sense to me. With a basic view rendering for each route, I moved on to CSS and styling. I decided to make use of Bootstrap for my CSS framework and used the project as a bit of a learning tool for Bootstrap. This is where I spent most of the rest of my time on the project, tinkering and experimenting with everything that Bootstrap has to offer while occasionally taking detours to implement new features I thought of or extra models as part of my stretch goals.
 
 ## Post-project Reflection
-This was a pretty fun project to work on and I definitely learned a lot from it. While I’m sure there are many apps like the one I made, I’m glad I didn’t let that deter me from choosing it for my project because it allowed me to work with something I’m passionate about which gives me more motivation to keep working on it. And there are a lot of things that could use some work on this app. For the future I can continue incorporating more models so that I can confidently declare the app a full collectables tracker. Adding some filters or sorting options would be great as well. And the overall design and layout is still a work in progress.
+This was a pretty fun project to work on and I definitely learned a lot from it. While I’m sure there are many apps like the one I made, I’m glad I didn’t let that deter me from choosing it for my project because it allowed me to work with something I’m passionate about which gives me more motivation to keep working on it. And there are a lot of things that could use some work on this app. For the future I can continue incorporating more models so that I can confidently declare the app a full collectables tracker. Adding some filters or sorting options would be great as well. And the overall design and layout is a constant work in progress.
