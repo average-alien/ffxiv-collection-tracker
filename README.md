@@ -4,6 +4,23 @@ https://ffxiv-collectables-average-alien.koyeb.app/
 
 Website where you can search for and view various collectables in the critically acclaimed MMORPG Final Fantasy XIV Online. By creating an account, users can also add collectables to a list and mark them as obtained or unobtained. Users can view their list on their profile page for easier tracking of all the goodies they want to get.
 
+## Installtion Instructions
+If you'd like to use this app locally then feel free to follow these instructions
+
+1. Fork and clone this repo to your local
+2. Navigate to the cloned directory within a terminal and do the following
+    - run `npm i` or `npm install` to install the neccessary node packages
+    - create a .env file with a single variable
+        - `ENC_KEY=""` and use whatever string you'd like
+3. Set up the config/config.json file in the development object
+    - username/password for postgres
+    - database: "ffxiv-collection-tracker"
+    - host: '127.0.0.1"
+    - dialect: "postgres"
+4. run `sequelize db:create` to create the database
+5. run `sequelize db:migrate` to migrate all the models
+6. run `nodemon`
+7. open up localhost:3000 in your browser and enjoy!
 
 ## API
 https://ffxivcollect.com/
