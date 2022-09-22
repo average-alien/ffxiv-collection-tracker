@@ -11,12 +11,15 @@ If you'd like to use this app locally then feel free to follow these instruction
 2. Navigate to the cloned directory within a terminal and do the following
     - run `npm i` or `npm install` to install the necessary node packages
     - create a .env file with a single variable
-        - `ENC_KEY=""` and use whatever string you'd like
-3. Set up the config/config.json file in the development object
-    - username/password for postgres
-    - database: "ffxiv-collection-tracker"
-    - host: '127.0.0.1"
-    - dialect: "postgres"
+        - `ENC_KEY=""` and insert whatever string you'd like
+3. Set sequelize configuration in the development object of the config/config.json file
+```
+    "username": "[your postgresql username]",
+    "password": "[your postgresql password]",
+    "database": "ffxiv-collection-tracker",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+```
 4. run `sequelize db:create` to create the database
 5. run `sequelize db:migrate` to migrate all the models
 6. run `nodemon`
