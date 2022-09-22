@@ -4,12 +4,12 @@
 
 Website where you can search for and view various collectables in the critically acclaimed MMORPG Final Fantasy XIV Online. By creating an account, users can also add collectables to a list and mark them as obtained or unobtained. Users can view their list on their profile page for easier tracking of all the goodies they want to get.
 
-## Installtion Instructions
+## Installation Instructions
 If you'd like to use this app locally then feel free to follow these instructions
 
 1. Fork and clone this repo to your local
 2. Navigate to the cloned directory within a terminal and do the following
-    - run `npm i` or `npm install` to install the neccessary node packages
+    - run `npm i` or `npm install` to install the necessary node packages
     - create a .env file with a single variable
         - `ENC_KEY=""` and use whatever string you'd like
 3. Set up the config/config.json file in the development object
@@ -85,7 +85,7 @@ Similar routes can be added for extra collectable categories I add to the DB
 ### MVP
 - [x] Display an index page for each collectable category
 - [x] Allow users to search for collectables by name within each category
-- [x] Display a show page with details on a specific colelctable
+- [x] Display a show page with details on a specific collectable
 - [x] Let users create accounts and log in with them (with secured auth)
 - [x] Let users add collectables to their personal track list
 - [x] Let users mark those collectables as obtained or not
