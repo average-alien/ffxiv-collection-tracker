@@ -1,6 +1,6 @@
 # FFXIV Collection Tracker
 
-https://ffxiv-collectables-average-alien.koyeb.app/
+[Check it out in action here!](https://ffxiv-collectables-average-alien.koyeb.app/)
 
 Website where you can search for and view various collectables in the critically acclaimed MMORPG Final Fantasy XIV Online. By creating an account, users can also add collectables to a list and mark them as obtained or unobtained. Users can view their list on their profile page for easier tracking of all the goodies they want to get.
 
@@ -23,9 +23,9 @@ If you'd like to use this app locally then feel free to follow these instruction
 7. open up localhost:3000 in your browser and enjoy!
 
 ## API
-https://ffxivcollect.com/
+[FFXIV Collect](https://ffxivcollect.com/)
 
-https://ffxivcollect.com/api/docs
+[FFXIV Collect API Docs](https://ffxivcollect.com/api/docs)
 
 API that provides data on all (if not most) of the collectables in the game. No API key is needed and there doesn't seem to be any form of rate limiting. Will mostly be using the API to get and show data on the collectables (ex. names, descriptions, and how to get them).
 
@@ -94,10 +94,9 @@ Similar routes can be added for extra collectable categories I add to the DB
 ### Stretch
 - [x] Add more collectable categories (WIP)
 - [x] Add the ability to search any category from the nav bar
-- [] Sort and possibly filter any lists or indexes
-- [] Give users the ability to search through their personal lists
-- [] Allow users to track multiple characters (players can have multiple characters which have unique collection progress)
-- [] 
+- [ ] Sort and possibly filter any lists or indexes
+- [ ] Give users the ability to search through their personal lists
+- [ ] Allow users to track multiple characters (players can have multiple characters which have unique collection progress)
 
 ## Tech used
 - express and node for running the server
